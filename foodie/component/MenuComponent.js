@@ -12,6 +12,7 @@ function Menu(props) {
                 subtitle={item.description}
                 hideChevron={true}
                 leftAvater={{rounded:true, source: require('./images/buffet.png')}}
+                onPress={() => props.onPress(item.id)}
             />
         )
     };
