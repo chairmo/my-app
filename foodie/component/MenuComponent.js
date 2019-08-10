@@ -22,18 +22,14 @@ class Menu extends Component {
         const renderMenuItem = ({item, index}) => {
             return (
                 <ListItem
-                    leftAvater={{
-                        title: item.name[0],
-                        source: {uri: '../assets/images/alberto.png'},
-                        showEditButton: true
-                    }
-
-                    }
                     key={index}
                     title={item.name}
                     subtitle={item.description}
                     chevron
                     onPress={() => navigate('DishDetail', {dishId: item.id})}
+                    leftAvater={{
+                        source: require('../assets/images/alberto.png')
+                    }}
                 />
             )
         };
