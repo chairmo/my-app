@@ -35,6 +35,9 @@ class About extends Component {
 
     static navigationOptions = {
         title: 'About Us',
+        headerStyle: {backgroundColor: "#512DA8"},
+        headerTintColor: "#fff",
+        headerTitleStyle: {color: "#fff"}
     };
 
 

@@ -22,6 +22,9 @@ class Contact extends Component {
 
     static navigationOptions = {
         title: 'Contact Us',
+        headerStyle: {backgroundColor: "#512DA8"},
+        headerTintColor: "#fff",
+        headerTitleStyle: {color: "#fff"}
     };
 
     render() {
