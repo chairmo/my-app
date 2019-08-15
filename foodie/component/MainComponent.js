@@ -8,7 +8,7 @@ import {
 } from 'react-navigation';
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
-import {View, Text, Image, ScrollView, StyleSheet} from "react-native";
+import {View, Text, Image, ScrollView, StyleSheet, Animated} from "react-native";
 import {Icon} from "react-native-elements";
 
 
@@ -29,55 +29,68 @@ const MenuNavigator = createStackNavigator({
     });
 
 const HomeNavigator = createStackNavigator({
-        Home: {screen: Home,
-            navigationOptions: ({navigation}) => ({
-                headerLeft: <Icon name="menu" size={24}
-                                  color="#fff"
-                                  onPress={() => navigation.toggleDrawer()}
-                />
-            })
-        }
-    });
+    Home: {
+        screen: Home,
+        navigationOptions: ({navigation}) => ({
+            headerLeft: <Icon name="menu" size={24}
+                              color="#fff"
+                              onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+});
 
 const ContactNavigator = createStackNavigator({
-        Contact: {screen: Contact,
-            navigationOptions: ({navigation}) => ({
-                headerLeft: <Icon name="menu" size={24}
-                                  color="#fff"
-                                  onPress={() => navigation.toggleDrawer()}
-                />
-            })
-        }
-    });
+    Contact: {
+        screen: Contact,
+        navigationOptions: ({navigation}) => ({
+            headerLeft: <Icon name="menu" size={24}
+                              color="#fff"
+                              onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+});
 
 const AboutNavigator = createStackNavigator({
-        About: {screen: About,
-            navigationOptions: ({navigation}) => ({
-                headerLeft: <Icon name="menu" size={24}
-                                  color="#fff"
-                                  onPress={() => navigation.toggleDrawer()}
-                />
-            })
-        }
+    About: {
+        screen: About,
+        navigationOptions: ({navigation}) => ({
+            headerLeft: <Icon name="menu" size={24}
+                              color="#fff"
+                              onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+});
+
+const CustomDrawerContentComponent = (props) => {
+    const translateX = props.drawerOpenProgress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [-100, 0],
     });
 
-const CustomDrawerContentComponent = (props) => (
-    <ScrollView>
-        <SafeAreaView style={styles.container} forceInset={{top: 'always', horizontal: 'never'}}>
-            <View style={styles.drawerHeader}>
-                <View style={{flex: 1}}>
-                    <Image source={require('../assets/images/logo.png')} style={styles.drawerImage}/>
+    return <Animated.View style={{transform: [{translateX}]}}>{
+        /* ... drawer contents */
+        <ScrollView>
+            <SafeAreaView style={styles.container} forceInset={{top: 'always', horizontal: 'never'}}>
+                <View style={styles.drawerHeader}>
+                    <View style={{flex: 1}}>
+                        <Image source={require('../assets/images/logo.png')} style={styles.drawerImage}/>
+                    </View>
+                    <View style={{flex: 2}}>
+                        <Text style={styles.drawerHeaderText}>
+                            Ristorante Con Fusion
+                        </Text>
+                    </View>
                 </View>
-                <View style={{flex: 2}}>
-                    <Text style={styles.drawerHeaderText}>
-                        Ristorante Con Fusion
-                    </Text>
-                </View>
-            </View>
-            <DrawerItems {...props}/>
-        </SafeAreaView>
-    </ScrollView>
-);
+                <DrawerItems {...props}/>
+            </SafeAreaView>
+        </ScrollView>
+
+    }</Animated.View>;
+};
+
 
 const MainNavigator = createDrawerNavigator({
         Home: {

@@ -19,10 +19,10 @@ function RenderDish(props) {
                 <Icon
                     raised
                     reverse
-                    name={props.favorites ? 'heart': 'heart-o'}
+                    name={props.favorite ? 'heart': 'heart-o'}
                     type="font-awesome"
                     color="#f50"
-                    onPress={() => props.favorites ? console.log('Fav already exist') : props.onPress()}
+                    onPress={() => props.favorite ? console.log('Fav already exist') : props.onPress()}
                 />
             </Card>
         )
